@@ -1,5 +1,7 @@
 package edu.unl.raikes.mapslab;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,6 +15,10 @@ public class MapsLab {
 	 */
 	public static void printAMap(Map<? extends Object, ? extends Object> map) {
 		// TODO: do the things (you may not use map's toString function)
+		for(Object o : map.keySet()) {
+			System.out.println("Key: " + o);
+			System.out.println("Value: " + map.get(o));
+		}
 	}
 
 	/**
@@ -27,7 +33,11 @@ public class MapsLab {
 		String[] words = input.split(" +");
 
 		// TODO: do the things
-		return null;
+		Map<String, Integer> map = new HashMap<>();
+		for (String word : words) {
+			map.put(word, (map.getOrDefault(word, 0) + 1));
+		}
+		return map;
 	}
 
 	/**
@@ -44,7 +54,14 @@ public class MapsLab {
 		String[] words = input.split(" +");
 
 		// TODO: do the things
-		return null;
+		Map<Integer, Set<String>> map = new HashMap<>();
+		for (String word : words) {
+			int len = word.length();
+			Set<String> temp = map.getOrDefault(len, new HashSet<>());
+			temp.add(word);
+			map.put(len, temp);
+		}
+		return map;
 	}
 
 	/**
@@ -63,7 +80,16 @@ public class MapsLab {
 		String[] words = input.split(" +");
 
 		// TODO: do the things
-		return null;
+		Map<Character, Set<String>> map = new HashMap<>();
+		for (String word : words) {
+			for (int i = 0; i < word.length(); i++) {
+				Character c = word.charAt(i);
+				Set<String> temp = map.getOrDefault(c, new HashSet<>());
+				temp.add(word);
+				map.put(c, temp);
+			}
+		}
+		return map;
 	}
 
 	/**
